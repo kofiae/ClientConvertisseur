@@ -119,35 +119,14 @@ namespace ClientConvertisseurV1.Views
                 Devises = new ObservableCollection<Devise>(result);
         }
 
-        private async void DisplayNoWifiDialog()
-        {
-            ContentDialog noWifiDialog = new ContentDialog()
-            {
-                Title = "No wifi connection",
-                Content = "Check connection and try again.",
-                CloseButtonText = "Ok"
-            };
-
-            await noWifiDialog.ShowAsync();
-        }
 
         private void MessageAsync(string v1, string v2)
         {
-            ContentDialog noWifiDialog = new ContentDialog()
-            {
-                Title = v2,
-                Content = v1,
-                CloseButtonText = "Ok"
-            };
+
         }
 
         private void convertir(object sender, RoutedEventArgs e)
         {
-            if (this.SelectedDevise == null)
-            {
-                DisplayNoWifiDialog();
-            }
-
             this.MontantEnDevise = Math.Round(this.montantEuros * this.SelectedDevise.Taux, 2);
         }
     }
