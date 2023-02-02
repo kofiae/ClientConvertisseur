@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using ClientConvertisseurV2.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -45,7 +46,14 @@ namespace ClientConvertisseurV2
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();
+            //Create a Frame to act as the navigation context and navigate to the first page
+            Frame rootFrame = new Frame();
+            // Place the frame in the current window
+            this.m_window.Content = rootFrame;
+            // Ensure the current window is active
             m_window.Activate();
+            // Navigate to the first page
+            rootFrame.Navigate(typeof(ConvertisseurEuroPage));
         }
 
         private Window m_window;
