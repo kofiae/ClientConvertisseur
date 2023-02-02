@@ -62,7 +62,9 @@ namespace ClientConvertisseurV2.Models
         public override bool Equals(object? obj)
         {
             return obj is Devise d &&
-               this.id == d.id;
+               this.id == d.id &&
+               this.taux == d.taux &&
+               this.nomDevise == d.nomDevise;
         }
     }
 }
