@@ -115,13 +115,18 @@ namespace ClientConvertisseurV2.ViewModels
                 Content = content,
                 CloseButtonText = "Ok"
             };
-            //erreurDevise.XamlRoot = this.Content.XamlRoot;
+            erreurDevise.XamlRoot = App.MainRoot.XamlRoot;
             ContentDialogResult result = await erreurDevise.ShowAsync();
         }
 
         private void ActionSetConversion()
         {
-            this.MontantEnDevise = Math.Round(this.montantEuros * this.SelectedDevise.Taux, 2);
+            if (this.SelectedDevise == null)
+            {
+                DisplayDialog("Erreur", "Vous devez selectionner une devise !");
+            }
+            else
+                this.MontantEnDevise = Math.Round(this.montantEuros * this.SelectedDevise.Taux, 2);
         }
 
     }
