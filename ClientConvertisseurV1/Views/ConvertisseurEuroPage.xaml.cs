@@ -114,9 +114,21 @@ namespace ClientConvertisseurV1.Views
             WSService service = new WSService("https://localhost:44353/api/");
             List<Devise> result = await service.GetDevisesAsync("devises");
             if (result == null)
-                MessageAsync("API non disponible !", "Erreur");
+                DisplayDialog("Erreur", "API non disponible !");
             else
                 Devises = new ObservableCollection<Devise>(result);
+        }
+
+        private async void DisplayDialog(string title, string content)
+        {
+            ContentDialog erreurDevise = new ContentDialog
+            {
+                Title = title,
+                Content = content,
+                CloseButtonText = "Ok"
+            };
+            erreurDevise.XamlRoot = this.Content.XamlRoot;
+            ContentDialogResult result = await erreurDevise.ShowAsync();
         }
 
 
@@ -127,7 +139,12 @@ namespace ClientConvertisseurV1.Views
 
         private void convertir(object sender, RoutedEventArgs e)
         {
-            this.MontantEnDevise = Math.Round(this.montantEuros * this.SelectedDevise.Taux, 2);
+            if (this.SelectedDevise == null) 
+            {
+                DisplayDialog("Erreur", "Vous devez selectionner une devise !");
+            }
+            else
+                this.MontantEnDevise = Math.Round(this.montantEuros * this.SelectedDevise.Taux, 2);
         }
     }
 }
