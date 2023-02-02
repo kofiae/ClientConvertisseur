@@ -12,7 +12,7 @@ using HttpClient = System.Net.Http.HttpClient;
 
 namespace ClientConvertisseurV2.Services
 {
-    internal class WSService : IService
+    public class WSService : IService
     {
         private HttpClient client;
 
