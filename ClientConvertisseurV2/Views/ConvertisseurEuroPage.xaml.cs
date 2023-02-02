@@ -30,8 +30,8 @@ namespace ClientConvertisseurV2.Views
         public ConvertisseurEuroPage()
         {
             this.InitializeComponent();
-            ConvertisseurEuroViewModel convertisseurEuroViewModel = new ConvertisseurEuroViewModel();
-            DataContext= convertisseurEuroViewModel;
+            //ConvertisseurEuroViewModel convertisseurEuroViewModel = new ConvertisseurEuroViewModel();
+            DataContext = ((App)Application.Current).ConvertisseurEuroVM;
         }
     }
 }

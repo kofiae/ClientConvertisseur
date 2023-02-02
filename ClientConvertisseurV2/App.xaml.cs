@@ -1,7 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using ClientConvertisseurV2.ViewModels;
 using ClientConvertisseurV2.Views;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -37,6 +40,11 @@ namespace ClientConvertisseurV2
         public App()
         {
             this.InitializeComponent();
+
+            Ioc.Default.ConfigureServices(
+                new ServiceCollection()
+                .AddSingleton<ConvertisseurEuroViewModel>()
+                .BuildServiceProvider());
         }
 
         /// <summary>
@@ -60,6 +68,10 @@ namespace ClientConvertisseurV2
 
         private Window m_window;
         public static FrameworkElement MainRoot { get; private set; }
+        public ConvertisseurEuroViewModel ConvertisseurEuroVM
+        {
+            get { return Ioc.Default.GetService<ConvertisseurEuroViewModel>(); }
+        }
 
     }
 }
