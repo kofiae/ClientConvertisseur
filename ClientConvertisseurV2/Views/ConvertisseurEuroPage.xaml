@@ -27,7 +27,7 @@
             Text="Devise" 
             />
         <ComboBox Width="200" Name="comboboxdevise" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="devise" ItemsSource="{Binding Devises, Mode=TwoWay}" SelectedItem="{Binding SelectedDevise, Mode=TwoWay}"/>
-        <Button Width="200" Margin="15" Content="Convertir" Name="button" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="comboboxdevise"/>
+        <Button Width="200" Margin="15" Content="Convertir" Name="button" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="comboboxdevise" Command="{Binding BtnSetConversion}"/>
 
         <TextBlock
 

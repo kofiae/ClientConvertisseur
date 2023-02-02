@@ -1,5 +1,6 @@
 ﻿using ClientConvertisseurV2.Models;
 using ClientConvertisseurV2.Services;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,8 @@ namespace ClientConvertisseurV2.ViewModels
                 OnPropertyChanged();
             }
         }
+        public IRelayCommand BtnSetConversion { get; }
+
         protected void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -82,11 +85,16 @@ namespace ClientConvertisseurV2.ViewModels
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
+
+
         #endregion
 
         public ConvertisseurEuroViewModel()
         {
             GetDataOnLoadAsync();
+
+            //Boutons
+            BtnSetConversion = new RelayCommand(ActionSetConversion);
         }
 
         private async void GetDataOnLoadAsync()
@@ -109,6 +117,11 @@ namespace ClientConvertisseurV2.ViewModels
             };
             //erreurDevise.XamlRoot = this.Content.XamlRoot;
             ContentDialogResult result = await erreurDevise.ShowAsync();
+        }
+
+        private void ActionSetConversion()
+        {
+            this.MontantEnDevise = Math.Round(this.montantEuros * this.SelectedDevise.Taux, 2);
         }
 
     }
