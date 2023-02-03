@@ -31,6 +31,7 @@ namespace ClientConvertisseurV2.ViewModels
             set
             {
                 montantEuros = value;
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +73,6 @@ namespace ClientConvertisseurV2.ViewModels
             set
             {
                 montantEnDevise = value;
-                OnPropertyChanged();
             }
         }
         public IRelayCommand BtnSetConversion { get; }
@@ -126,7 +126,7 @@ namespace ClientConvertisseurV2.ViewModels
                 DisplayDialog("Erreur", "Vous devez selectionner une devise !");
             }
             else
-                this.MontantEnDevise = Math.Round(this.montantEuros / this.SelectedDevise.Taux, 2);
+                this.MontantEuros = Math.Round(this.MontantEnDevise / this.SelectedDevise.Taux, 2);
         }
     }
 }
